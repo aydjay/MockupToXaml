@@ -1,0 +1,11 @@
+﻿<Window 
+        {Namespaces}
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="XamlViewer" Height="{Height}" Width="{Width}">
+		<Window.Resources>
+		{Resources}
+		</Window.Resources>
+
+{LayoutRoot}
+
+</Window>

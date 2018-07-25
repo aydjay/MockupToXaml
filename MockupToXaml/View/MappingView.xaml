@@ -1,0 +1,29 @@
+﻿<Page x:Class="MockupToXaml.View.MappingView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="528" d:DesignWidth="838"
+	Title="MappingView" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="105*" />
+            <RowDefinition Height="418*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button Height="90" HorizontalAlignment="Center"  Name="btnGenerate" VerticalAlignment="Center" Width="85" Click="btnGenerate_Click" Margin="10">
+                <Button.Content>
+                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Image Height="64" Width="64" VerticalAlignment="Center" Source="/MockupToXaml;component/Gfx/GenerateButton.png" />
+                        <TextBlock Text="generate" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <TextBox Grid.Row="1" HorizontalAlignment="Stretch" Margin="4" Name="txtCode" VerticalAlignment="Stretch" IsReadOnly="True" AcceptsReturn="True"
+                 Text="{Binding GeneratedCode}" Background="#FFEBEBEB" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+    </Grid>
+</Page>

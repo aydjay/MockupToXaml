@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MockupTemplate>
+  <MockupControlType></MockupControlType>
+  <Namespace><![CDATA[xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"]]></Namespace>
+  <ConverterAssemblyPath>..\..\..\..\Source\MockupToXaml.Converters\bin\Debug\MockupToXaml.Converters.dll</ConverterAssemblyPath>
+  <ConverterClassName>MockupToXaml.Converters.Unknown</ConverterClassName>
+  <Template><![CDATA[<Rectangle Width="{Width}" Height="{Height}" Margin="{X},{Y},0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />]]></Template>
+</MockupTemplate>
