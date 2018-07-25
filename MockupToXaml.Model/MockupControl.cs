@@ -11,7 +11,7 @@ namespace MockupToXaml.Model
     {
 
         private int _ControlID;
-        [XmlAttribute(AttributeName = "controlID")]
+        [XmlElement(ElementName = "ID")]
         public int ControlID
         {
             get { return _ControlID; }
@@ -23,7 +23,7 @@ namespace MockupToXaml.Model
         }
 
         private string _ControlTypeID;
-        [XmlAttribute(AttributeName = "controlTypeID")]
+        [XmlElement(ElementName =  "typeID")]
         public string ControlTypeID
         {
             get { return _ControlTypeID; }
@@ -35,7 +35,7 @@ namespace MockupToXaml.Model
         }
 
         private int _X;
-        [XmlAttribute(AttributeName = "x")]
+        [XmlElement(ElementName =  "x")]
         public int X
         {
             get { return _X; }
@@ -47,7 +47,7 @@ namespace MockupToXaml.Model
         }
 
         private int _Y;
-        [XmlAttribute(AttributeName = "y")]
+        [XmlElement(ElementName =  "y")]
         public int Y
         {
             get { return _Y; }
@@ -62,7 +62,7 @@ namespace MockupToXaml.Model
         /// <summary>
         /// Computed width.  Takes into account possible -1 value for width.
         /// </summary>
-        [XmlAttribute(AttributeName = "w")]
+        [XmlElement(ElementName =  "measuredW")]
         public int Width
         {
             get { return _Width; }
@@ -77,7 +77,7 @@ namespace MockupToXaml.Model
         /// <summary>
         /// Computed Height.  Takes into account possible -1 value for Height.
         /// </summary>
-        [XmlAttribute(AttributeName = "h")]
+        [XmlAttribute(AttributeName = "measuredH")]
         public int Height
         {
             get { return _Height; }
@@ -87,37 +87,6 @@ namespace MockupToXaml.Model
                 SafeNotify("Height");
             }
         }
-
-        private int _MeasuredWidth;
-        /// <summary>
-        /// Actual measuredW value from the BMML.
-        /// </summary>
-        [XmlAttribute(AttributeName = "measuredW")]
-        public int MeasuredWidth
-        {
-            get { return _MeasuredWidth; }
-            set
-            {
-                _MeasuredWidth = value;
-                SafeNotify("MeasuredWidth");
-            }
-        }
-
-        private int _MeasuredHeight;
-        /// <summary>
-        /// Actual measuredH value from the BMML.
-        /// </summary>
-        [XmlAttribute(AttributeName = "measuredH")]
-        public int MeasuredHeight
-        {
-            get { return _MeasuredHeight; }
-            set
-            {
-                _MeasuredHeight = value;
-                SafeNotify("MeasuredHeight");
-            }
-        }
-
 
         private Dictionary<string, string> _ControlProperties;
         [XmlIgnore]

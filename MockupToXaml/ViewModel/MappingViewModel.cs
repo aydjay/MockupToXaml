@@ -84,13 +84,6 @@ namespace MockupToXaml.ViewModel
                 // Enumerate the controls and fixup some values.
                 foreach (MockupControl control in Mockup.Controls)
                 {
-                    // Compute H/W based on possible measured versus actual H/W
-                    if (control.Width == -1)
-                        control.Width = control.MeasuredWidth;
-
-                    if (control.Height == -1)
-                        control.Height = control.MeasuredHeight;
-
                     if (control == MainWindowControl) continue;
                     
                     // Set the coordinates of the sub-controls to their relative (to the main mockup form) values.

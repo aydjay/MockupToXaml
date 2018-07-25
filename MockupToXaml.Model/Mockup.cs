@@ -12,8 +12,6 @@ namespace MockupToXaml.Model
     [XmlRoot(ElementName = "mockup")]
     public class Mockup : ModelBase
     {
-
-
         private int _Width;
         [XmlAttribute(AttributeName = "mockupW")]
         public int Width
@@ -108,7 +106,8 @@ namespace MockupToXaml.Model
     
             foreach (MockupControl control in this.Controls)
             {
-                XElement xcontrol = xdoc.Descendants("control").SingleOrDefault(p => p.Attribute("controlID").Value == control.ControlID.ToString());
+                var controls = xdoc.Descendants("controls");
+                var xcontrol = controls.Descendants("control").FirstOrDefault(x => x.Element("ID").Value == control.ControlID.ToString());
                 if (xcontrol == null)
                 {
                     // TODO: Warn? Log? we should not just ignore this.. controlID should have been found.
@@ -117,9 +116,16 @@ namespace MockupToXaml.Model
 
                 control.ControlProperties = new Dictionary<string, string>();
 
-                foreach (XElement xcontrolProp in xcontrol.Elements("controlProperties").Descendants())
+                foreach (XElement xcontrolProp in xcontrol.Elements("properties").Elements())
                 {
-                    if ( !string.IsNullOrEmpty( xcontrolProp.Value ) )
+                    //For now - only handle "Simple" properties
+                    if (xcontrolProp.HasElements)
+                    {
+                        //todo: Implement some logging
+                        continue;
+                    }
+
+                    if (!string.IsNullOrEmpty( xcontrolProp.Value ) )
                         control.ControlProperties.Add(xcontrolProp.Name.LocalName, Uri.UnescapeDataString( xcontrolProp.Value ));
                 }
 
