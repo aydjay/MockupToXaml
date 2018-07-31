@@ -28,7 +28,7 @@ namespace MockupToXaml.ViewModel
             set
             {
                 _Filename = value;
-                SafeNotify("Filename");
+                OnPropertyChanged();
             }
         }
 
@@ -40,7 +40,7 @@ namespace MockupToXaml.ViewModel
             set
             {
                 _WindowTemplate = value;
-                SafeNotify("WindowTemplate");
+                OnPropertyChanged();
             }
         }
 
@@ -51,7 +51,7 @@ namespace MockupToXaml.ViewModel
             set
             {
                 _Mockup = value;
-                SafeNotify("Mockup");
+                OnPropertyChanged();
             }
         }
 
@@ -62,7 +62,7 @@ namespace MockupToXaml.ViewModel
             set
             {
                 _MainWindowControl = value;
-                SafeNotify("MainWindowControl");
+                OnPropertyChanged();
             }
         }
 
@@ -100,7 +100,7 @@ namespace MockupToXaml.ViewModel
             set
             {
                 _GeneratedCode = value;
-                SafeNotify("GeneratedCode");
+                OnPropertyChanged();
             }
         }
 
@@ -111,7 +111,7 @@ namespace MockupToXaml.ViewModel
             set
             {
                 _RequiredNamespaces = value;
-                SafeNotify("RequiredNamespaces");
+                OnPropertyChanged();
             }
         }
 
@@ -122,7 +122,7 @@ namespace MockupToXaml.ViewModel
             set
             {
                 _WindowXaml = value;
-                SafeNotify("WindowXaml");
+                OnPropertyChanged();
             }
         }
 

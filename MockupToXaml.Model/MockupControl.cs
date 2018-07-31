@@ -18,7 +18,6 @@ namespace MockupToXaml.Model
             set
             {
                 _ControlID = value;
-                SafeNotify("ControlID");
             }
         }
 
@@ -30,7 +29,6 @@ namespace MockupToXaml.Model
             set
             {
                 _ControlTypeID = value;
-                SafeNotify("ControlTypeID");
             }
         }
 
@@ -42,7 +40,6 @@ namespace MockupToXaml.Model
             set
             {
                 _X = value;
-                SafeNotify("X");
             }
         }
 
@@ -54,7 +51,6 @@ namespace MockupToXaml.Model
             set
             {
                 _Y = value;
-                SafeNotify("Y");
             }
         }
 
@@ -69,7 +65,6 @@ namespace MockupToXaml.Model
             set
             {
                 _Width = value;
-                SafeNotify("Width");
             }
         }
 
@@ -84,7 +79,6 @@ namespace MockupToXaml.Model
             set
             {
                 _Height = value;
-                SafeNotify("Height");
             }
         }
 
@@ -96,7 +90,6 @@ namespace MockupToXaml.Model
             set
             {
                 _ControlProperties = value;
-                SafeNotify("ControlProperties");
             }
         }
 

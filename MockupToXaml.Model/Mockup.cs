@@ -20,7 +20,6 @@ namespace MockupToXaml.Model
             set
             {
                 _Width = value;
-                SafeNotify("Width");
             }
         }
 
@@ -32,7 +31,6 @@ namespace MockupToXaml.Model
             set
             {
                 _Height = value;
-                SafeNotify("Height");
             }
         }
 
@@ -45,7 +43,6 @@ namespace MockupToXaml.Model
             set
             {
                 _Controls = value;
-                SafeNotify("Controls");
             }
         }
 
@@ -64,34 +61,6 @@ namespace MockupToXaml.Model
             mockup.extractControlProperties(File.ReadAllText(filePath));
 
             return mockup;
-
-        }
-
-        public string ToXML()
-        {
-
-            XmlSerializer xer = new XmlSerializer(typeof(Mockup));
-
-            try
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    xer.Serialize(ms, this);
-                    byte[] buffer = new byte[ms.Length];
-                    ms.Position = 0;
-                    ms.Read(buffer, 0, buffer.Length);
-                    ms.Close();
-
-                    return System.Text.ASCIIEncoding.ASCII.GetString(buffer);
-                }
-
-            }
-            catch
-            {
-            }
-
-            return string.Empty;
-
 
         }
 
