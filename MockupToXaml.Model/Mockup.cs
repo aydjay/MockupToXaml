@@ -13,7 +13,7 @@ namespace MockupToXaml.Model
     public class Mockup : ModelBase
     {
         private int _Width;
-        [XmlAttribute(AttributeName = "mockupW")]
+        [XmlElement(ElementName = "mockupW")]
         public int Width
         {
             get { return _Width; }
@@ -25,7 +25,7 @@ namespace MockupToXaml.Model
         }
 
         private int _Height;
-        [XmlAttribute(AttributeName = "mockupH")]
+        [XmlElement(ElementName = "mockupH")]
         public int Height
         {
             get { return _Height; }

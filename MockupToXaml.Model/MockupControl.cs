@@ -77,7 +77,7 @@ namespace MockupToXaml.Model
         /// <summary>
         /// Computed Height.  Takes into account possible -1 value for Height.
         /// </summary>
-        [XmlAttribute(AttributeName = "measuredH")]
+        [XmlElement(ElementName = "measuredH")]
         public int Height
         {
             get { return _Height; }
