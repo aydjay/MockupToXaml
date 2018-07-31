@@ -1,67 +1,97 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MockupToXaml.Model;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using MockupToXaml.Local;
+using MockupToXaml.Model;
 
 namespace MockupToXaml.ViewModel
 {
     public class MappingViewModel : ViewModelBase
     {
+        private string _filename;
+        private string _generatedCode;
+        private MockupControl _mainWindowControl;
+        private MockupHolder _mockupHolder;
+        private string _requiredNamespaces;
+        private string _windowTemplate;
+        private string _windowXaml;
 
         public MappingViewModel()
         {
-            Uri uri = new Uri(Assembly.GetEntryAssembly().CodeBase);
-            string exeBasePath = uri.AbsolutePath.Replace("/", "\\");
+            var uri = new Uri(Assembly.GetEntryAssembly().CodeBase);
+            var exeBasePath = uri.AbsolutePath.Replace("/", "\\");
             exeBasePath = Path.GetDirectoryName(exeBasePath);
 
             WindowTemplate = File.ReadAllText(string.Format("{0}\\Templates\\Window.txt", exeBasePath));
-            
         }
 
-        private string _Filename;
         public string Filename
         {
-            get { return _Filename; }
+            get { return _filename; }
             set
             {
-                _Filename = value;
+                _filename = value;
                 OnPropertyChanged();
             }
         }
 
-
-        private string _WindowTemplate;
         public string WindowTemplate
         {
-            get { return _WindowTemplate; }
+            get { return _windowTemplate; }
             set
             {
-                _WindowTemplate = value;
+                _windowTemplate = value;
                 OnPropertyChanged();
             }
         }
 
-        private Mockup _Mockup;
-        public Mockup Mockup
+        public MockupHolder MockupHolder
         {
-            get { return _Mockup; }
+            get { return _mockupHolder; }
             set
             {
-                _Mockup = value;
+                _mockupHolder = value;
                 OnPropertyChanged();
             }
         }
 
-        private MockupControl _MainWindowControl;
         public MockupControl MainWindowControl
         {
-            get { return _MainWindowControl; }
+            get { return _mainWindowControl; }
             set
             {
-                _MainWindowControl = value;
+                _mainWindowControl = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string GeneratedCode
+        {
+            get { return _generatedCode; }
+            set
+            {
+                _generatedCode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string RequiredNamespaces
+        {
+            get { return _requiredNamespaces; }
+            set
+            {
+                _requiredNamespaces = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string WindowXaml
+        {
+            get { return _windowXaml; }
+            set
+            {
+                _windowXaml = value;
                 OnPropertyChanged();
             }
         }
@@ -70,11 +100,11 @@ namespace MockupToXaml.ViewModel
         {
             if (!string.IsNullOrEmpty(Filename))
             {
-                Mockup = Mockup.LoadFromXML(Filename);
+                MockupHolder = MockupHolder.DeserialiseFile(Filename);
                 // TODO: Check the mockup object.  Make sure it is not null, if it is bubble up an error to the UI.
 
                 // Find the title window control, make all controls a sub of that.
-                MainWindowControl = Mockup.Controls.SingleOrDefault(p => p.ControlTypeID == "com.balsamiq.mockups::TitleWindow");
+                MainWindowControl = MockupHolder.Mockup.Controls.Control.SingleOrDefault(p => p.ControlTypeId == "com.balsamiq.mockups::TitleWindow");
                 if (MainWindowControl == null)
                 {
                     // TODO: Bubble a warning to the UI that the mockup loaded does not conform to the export requirements.
@@ -82,10 +112,13 @@ namespace MockupToXaml.ViewModel
                 }
 
                 // Enumerate the controls and fixup some values.
-                foreach (MockupControl control in Mockup.Controls)
+                foreach (var control in MockupHolder.Mockup.Controls.Control)
                 {
-                    if (control == MainWindowControl) continue;
-                    
+                    if (control == MainWindowControl)
+                    {
+                        continue;
+                    }
+
                     // Set the coordinates of the sub-controls to their relative (to the main mockup form) values.
                     control.X = control.X - MainWindowControl.X;
                     control.Y = control.Y - MainWindowControl.Y;
@@ -93,55 +126,19 @@ namespace MockupToXaml.ViewModel
             }
         }
 
-        private string _GeneratedCode;
-        public string GeneratedCode
-        {
-            get { return _GeneratedCode; }
-            set
-            {
-                _GeneratedCode = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _RequiredNamespaces;
-        public string RequiredNamespaces
-        {
-            get { return _RequiredNamespaces; }
-            set
-            {
-                _RequiredNamespaces = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _WindowXaml;
-        public string WindowXaml
-        {
-            get { return _WindowXaml; }
-            set
-            {
-                _WindowXaml = value;
-                OnPropertyChanged();
-            }
-        }
-
-
 
         public void GenerateCode()
         {
-            Local.XamlGenerator gen = new Local.XamlGenerator();
-            gen.Mockup = Mockup;
+            var gen = new XamlGenerator();
+            gen.MockupHolder = MockupHolder;
             gen.Generate();
-            RequiredNamespaces  = gen.NamespaceHeader;
-            GeneratedCode       = gen.GeneratedCode;
-            WindowXaml = WindowTemplate.Replace("{Namespaces}", gen.NamespaceHeader).Replace("{Height}", gen.Mockup.Height.ToString())
-                                    .Replace("{Width}", gen.Mockup.Width.ToString())
-                                    .Replace("{LayoutRoot}", gen.GeneratedCode)
-                                    .Replace("{Title}", "Title")
-                                    .Replace("{Resources}", gen.ResourceHeader);
-
+            RequiredNamespaces = gen.NamespaceHeader;
+            GeneratedCode = gen.GeneratedCode;
+            WindowXaml = WindowTemplate.Replace("{Namespaces}", gen.NamespaceHeader).Replace("{Height}", gen.MockupHolder.Mockup.Height.ToString())
+                .Replace("{Width}", gen.MockupHolder.Mockup.Width.ToString())
+                .Replace("{LayoutRoot}", gen.GeneratedCode)
+                .Replace("{Title}", "Title")
+                .Replace("{Resources}", gen.ResourceHeader);
         }
-
     }
 }

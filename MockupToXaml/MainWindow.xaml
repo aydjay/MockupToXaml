@@ -1,7 +1,7 @@
 ﻿<Window x:Class="MockupToXaml.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Mockup to XAML" Height="590" Width="650">
+        Title="MockupHolder to XAML" Height="590" Width="650">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="26*" />
@@ -9,7 +9,7 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="File" >
-                <MenuItem Header="Open Mockup" Name="miOpenMockup" Click="miOpenMockup_Click" />
+                <MenuItem Header="Open MockupHolder" Name="miOpenMockup" Click="miOpenMockup_Click" />
                 <MenuItem Header="Exit" Name="miExit" Click="miExit_Click" />
             </MenuItem>
         </Menu>
