@@ -112,19 +112,19 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Resource Include="Gfx\GenerateButton.png" />
-    <Content Include="Templates\com.balsamiq.mockups__Label.xml">
+    <Content Include="Templates\Label.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\com.balsamiq.mockups__List.xml">
+    <Content Include="Templates\List.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\com.balsamiq.mockups__DataGrid.xml">
+    <Content Include="Templates\DataGrid.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\com.balsamiq.mockups__TextInput.xml">
+    <Content Include="Templates\TextInput.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\com.balsamiq.mockups__ComboBox.xml">
+    <Content Include="Templates\ComboBox.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\Unknown.xml">
@@ -134,7 +134,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="SampleMockup\Sample1.txt" />
-    <Content Include="Templates\com.balsamiq.mockups__Button.xml">
+    <Content Include="Templates\Button.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -150,6 +150,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MockupToXaml.Converters\MockupToXaml.Converters.csproj">
+      <Project>{b0591abb-dd61-484d-ae3f-ed53911db863}</Project>
+      <Name>MockupToXaml.Converters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MockupToXaml.Model\MockupToXaml.Model.csproj">
       <Project>{3C23321C-35EB-4981-B023-C104AA6541F9}</Project>
       <Name>MockupToXaml.Model</Name>

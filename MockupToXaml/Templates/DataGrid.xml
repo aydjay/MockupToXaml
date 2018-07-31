@@ -2,7 +2,6 @@
 <MockupTemplate>
   <MockupControlType>com.balsamiq.mockups::DataGrid</MockupControlType>
   <Namespace><![CDATA[xmlns:wpfToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"]]></Namespace>
-  <ConverterAssemblyPath>..\..\..\..\Source\MockupToXaml.Converters\bin\Debug\MockupToXaml.Converters.dll</ConverterAssemblyPath>
   <ConverterClassName>MockupToXaml.Converters.DataGrid</ConverterClassName>
   <Template>
     <![CDATA[<DataGrid Width="{Width}" Height="{Height}" Margin="{X},{Y},0,0" HorizontalAlignment="Left" VerticalAlignment="Top"

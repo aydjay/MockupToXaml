@@ -15,7 +15,6 @@ namespace MockupToXaml.Model
 
         public string MockupControlType { get; set; }
         public string Namespace { get; set; }
-        public string ConverterAssemblyPath { get; set; }
         public string ConverterClassName { get; set; }
         public string Template { get; set; }
         /// <summary>

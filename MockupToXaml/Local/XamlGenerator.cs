@@ -124,8 +124,7 @@ namespace MockupToXaml.Local
             string pluginAssemblyPath;
 
             Uri uri = new Uri(Assembly.GetEntryAssembly().CodeBase);
-            string exeBasePath = uri.AbsolutePath.Replace("/", "\\");
-            exeBasePath = Path.GetDirectoryName(exeBasePath);
+            string exeBasePath = Path.GetDirectoryName(uri.LocalPath);
 
             if (File.Exists(string.Format("{1}\\Templates\\{0}.xml", templateName, exeBasePath)))
             {
@@ -136,12 +135,8 @@ namespace MockupToXaml.Local
 
             MockupTemplate template = MockupTemplate.LoadFromXML(templateFilename);
             
-             if (template.ConverterAssemblyPath.Substring(1, 1) != ":")
-                pluginAssemblyPath = string.Format("{0}\\{1}", exeBasePath, template.ConverterAssemblyPath);
-            else
-                pluginAssemblyPath = template.ConverterAssemblyPath;
-
-            Assembly converterAssembly = Assembly.LoadFile(pluginAssemblyPath);
+                        
+            Assembly converterAssembly = Assembly.LoadFile(Path.Combine(exeBasePath, "MockupToXaml.Converters.dll"));
             IMockupControlConverter converter = (IMockupControlConverter)converterAssembly.CreateInstance(template.ConverterClassName);
 
             converter.Template = template;

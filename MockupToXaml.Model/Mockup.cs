@@ -121,7 +121,7 @@ namespace MockupToXaml.Model
                     //For now - only handle "Simple" properties
                     if (xcontrolProp.HasElements)
                     {
-                        //todo: Implement some logging
+                        //TODO: Implement some logging
                         continue;
                     }
 

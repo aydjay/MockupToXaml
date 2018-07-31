@@ -2,7 +2,6 @@
 <MockupTemplate>
   <MockupControlType>com.balsamiq.mockups::Label</MockupControlType>
   <Namespace><![CDATA[xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"]]></Namespace>
-  <ConverterAssemblyPath>..\..\..\..\Source\MockupToXaml.Converters\bin\Debug\MockupToXaml.Converters.dll</ConverterAssemblyPath>
   <ConverterClassName>MockupToXaml.Converters.TextBlock</ConverterClassName>
   <Template><![CDATA[<TextBlock Width="{Width}" Height="{Height}" Margin="{X},{Y},0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />]]></Template>
 </MockupTemplate>
