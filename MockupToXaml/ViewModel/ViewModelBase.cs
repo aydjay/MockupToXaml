@@ -1,29 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MockupToXaml.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void SafeNotify(string propertyName)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        internal bool smartCardCheck()
-        {
-            bool isSuccess = false;
-
-
-            return isSuccess;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

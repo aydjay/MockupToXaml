@@ -8,7 +8,7 @@ namespace MockupToXaml.Local
 {
     public class XamlGenerator
     {
-        public Mockup Mockup { get; set; }
+        public MockupHolder MockupHolder { get; set; }
 
         public string GeneratedCode { get; set; }
 
@@ -22,9 +22,9 @@ namespace MockupToXaml.Local
             NamespaceHeader = "";
             ResourceHeader = "";
 
-            code.AppendFormat("<Grid Height=\"{0}\" Width=\"{1}\">\r\n", Mockup.Height, Mockup.Width);
+            code.AppendFormat("<Grid Height=\"{0}\" Width=\"{1}\">\r\n", MockupHolder.Mockup.Height, MockupHolder.Mockup.Width);
 
-            foreach (var control in Mockup.Controls)
+            foreach (var control in MockupHolder.Mockup.Controls.Control)
             {
                 code.AppendLine(getXaml(control));
             }
@@ -36,7 +36,7 @@ namespace MockupToXaml.Local
 
         private string getXaml(MockupControl control)
         {
-            var templateName = control.ControlTypeID.Replace(':', '_');
+            var templateName = control.ControlTypeId.Replace(':', '_');
             string templateFilename;
 
             var uri = new Uri(Assembly.GetEntryAssembly().CodeBase);

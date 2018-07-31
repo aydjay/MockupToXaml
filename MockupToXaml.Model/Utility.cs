@@ -17,9 +17,6 @@ namespace MockupToXaml.Model
 
             if (tag.Name.LocalName == "TextBlock")
                 ProcessProperty(tag, "TextBlock", "Text", "text", control);
-
-
-
         }
 
         public static void ProcessProperty(XElement tag, string xamlControlName, string xamlAttributeName, string mockupPropertyName, MockupControl mockupControl)
