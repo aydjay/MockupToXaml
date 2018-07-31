@@ -17,7 +17,7 @@ namespace MockupToXaml
         private void miOpenMockup_Click(object sender, RoutedEventArgs e)
         {
             var ofd = new OpenFileDialog();
-            ofd.Filter = "All Files (*.*)|*.*|Json (*.json)|*.json|Balsamiq Mockups (*.bmml)|*.bmml";
+            ofd.Filter = "All Files (*.*)|*.*|Json (*.json)|*.json";
             var result = ofd.ShowDialog();
             if (result.HasValue && result.Value)
             {

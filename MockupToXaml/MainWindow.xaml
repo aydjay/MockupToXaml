@@ -9,7 +9,7 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="File" >
-                <MenuItem Header="Open MockupHolder" Name="miOpenMockup" Click="miOpenMockup_Click" />
+                <MenuItem Header="Open Mockup" Name="miOpenMockup" Click="miOpenMockup_Click" />
                 <MenuItem Header="Exit" Name="miExit" Click="miExit_Click" />
             </MenuItem>
         </Menu>
