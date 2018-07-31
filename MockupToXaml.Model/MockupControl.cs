@@ -30,20 +30,7 @@ namespace MockupToXaml.Model
         [JsonProperty("measuredH")]
         public int Height { get; set; }
 
-        //Todo: See if we can deserialize it in one go!
-        [JsonIgnore]//("properties")]
-        public Dictionary<string,string> ControlProperties { get; set; }
-    }
-
-    public class Properties
-    {
-        [JsonProperty("bold")]
-        public bool Bold { get; set; }
-
-        [JsonProperty("size")]
-        public int Size { get; set; }
-
-        [JsonProperty("text")]
-        public string Text { get; set; }
+        [JsonProperty("properties")]
+        public Dictionary<string, dynamic> ControlProperties { get; set; }
     }
 }

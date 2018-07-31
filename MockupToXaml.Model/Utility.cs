@@ -17,18 +17,15 @@ namespace MockupToXaml.Model
 
             if (tag.Name.LocalName == "TextBlock")
                 ProcessProperty(tag, "TextBlock", "Text", "text", control);
-
-
-
         }
 
         public static void ProcessProperty(XElement tag, string xamlControlName, string xamlAttributeName, string mockupPropertyName, MockupControl mockupControl)
         {
-            //if (!string.IsNullOrEmpty(mockupControl.ControlProperties[mockupPropertyName]))
-            //{
-            //    // TODO: check first to see if the content attr already exists.
-            //    tag.SetAttributeValue(xamlAttributeName, mockupControl.ControlProperties[mockupPropertyName]);
-            //}
+            if (!string.IsNullOrEmpty(mockupControl.ControlProperties[mockupPropertyName]))
+            {
+                // TODO: check first to see if the content attr already exists.
+                tag.SetAttributeValue(xamlAttributeName, mockupControl.ControlProperties[mockupPropertyName]);
+            }
         }
 
         public static string PerformReplacements(string stringIn, MockupControl control)
