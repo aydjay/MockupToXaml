@@ -1,38 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using Microsoft.Win32;
 using System.Windows.Markup;
-using System.Reflection;
-using System.IO;
+using Microsoft.Win32;
+using MockupToXaml.ViewModel;
 
 namespace MockupToXaml.View
 {
     /// <summary>
-    /// Interaction logic for MappingView.xaml
+    ///     Interaction logic for MappingView.xaml
     /// </summary>
     public partial class MappingView : Page
     {
-        ViewModel.MappingViewModel viewModel = new ViewModel.MappingViewModel();
+        private readonly MappingViewModel viewModel = new MappingViewModel();
 
         public MappingView()
         {
-            this.DataContext = viewModel;
+            DataContext = viewModel;
             InitializeComponent();
         }
 
         public MappingView(string filename)
         {
-            this.DataContext = viewModel;
+            DataContext = viewModel;
             InitializeComponent();
             viewModel.Filename = filename;
 
@@ -42,13 +31,13 @@ namespace MockupToXaml.View
 
         private void btnBrowse_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
+            var ofd = new OpenFileDialog();
             ofd.Filter = "All Files (*.*)|*.*";
             ofd.ShowDialog();
 
             viewModel.Filename = ofd.FileName;
 
-            
+
             viewModel.LoadMockup();
         }
 
@@ -56,10 +45,8 @@ namespace MockupToXaml.View
         {
             viewModel.GenerateCode();
 
-            Window window = (Window)XamlReader.Parse(viewModel.WindowXaml);
+            var window = (Window) XamlReader.Parse(viewModel.WindowXaml);
             window.Show();
         }
-
-       
     }
 }
