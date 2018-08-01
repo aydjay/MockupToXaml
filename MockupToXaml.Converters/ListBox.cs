@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MockupToXaml.Model;
 using System.Xml.Linq;
+using MockupToXaml.Model;
 
 namespace MockupToXaml.Converters
 {
     public class ListBox : IMockupControlConverter
     {
-        public ListBox()
-        {
-        }
-              
         public MockupTemplate Template { get; set; }
 
         public string ConvertMockupToXaml(MockupControl control)
         {
-            string code = string.Empty;
+            var code = string.Empty;
 
             code = Utility.PerformReplacements(Template.Template, control);
 
             try
             {
                 // Add attributes for the mockup control properties
-                XElement tag = XElement.Parse(code);
+                var tag = XElement.Parse(code);
 
                 if (control.ControlProperties.ContainsKey("text"))
                 {
@@ -32,14 +26,14 @@ namespace MockupToXaml.Converters
                     if (!string.IsNullOrEmpty(textValue))
                     {
                         textValue = Uri.UnescapeDataString(textValue);
-                        List<string> listItems = new List<string>(textValue.Split('\n'));
-                        foreach (string listItem in listItems)
+                        var listItems = new List<string>(textValue.Split('\n'));
+                        foreach (var listItem in listItems)
                         {
                             // Add the listItem to the listbox control.
-                            XElement xListItem = new XElement("ListBoxItem");
+                            var xListItem = new XElement("ListBoxItem");
                             xListItem.SetAttributeValue("Content", listItem);
                             tag.Add(xListItem);
-                        }//ListBoxItem
+                        }
                     }
                 }
 
@@ -49,7 +43,6 @@ namespace MockupToXaml.Converters
             {
                 return code;
             }
-
         }
     }
 }
