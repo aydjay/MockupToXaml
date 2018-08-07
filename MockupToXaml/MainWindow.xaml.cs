@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Microsoft.Win32;
 using MockupToXaml.View;
+using MockupToXaml.ViewModel;
 
 namespace MockupToXaml
 {
@@ -12,18 +13,13 @@ namespace MockupToXaml
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainWindowViewModel();
         }
 
         private void miOpenMockup_Click(object sender, RoutedEventArgs e)
         {
-            var ofd = new OpenFileDialog();
-            ofd.Filter = "All Files (*.*)|*.*|Json (*.json)|*.json";
-            var result = ofd.ShowDialog();
-            if (result.HasValue && result.Value)
-            {
-                var view = new MappingView(ofd.FileName);
-                frameMain.Navigate(view);
-            }
+
         }
 
         private void miExit_Click(object sender, RoutedEventArgs e)

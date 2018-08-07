@@ -1,26 +1,25 @@
 ﻿<Window x:Class="MockupToXaml.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MockupHolder to XAML" Height="590" Width="650">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="26*" />
-            <RowDefinition Height="525*" />
-        </Grid.RowDefinitions>
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:view="clr-namespace:MockupToXaml.View" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mockupToXaml="clr-namespace:MockupToXaml" 
+        xmlns:fluent="urn:fluent-ribbon" 
+        xmlns:viewModel="clr-namespace:MockupToXaml.ViewModel"
+        mc:Ignorable="d"
+        Title="MockupHolder to XAML" Height="590" Width="650" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
+    <StackPanel>
         <Menu>
             <MenuItem Header="File">
-                <MenuItem Header="Open Mockup" Name="miOpenMockup" Click="miOpenMockup_Click" />
-                <MenuItem Header="Exit" Name="miExit" Click="miExit_Click" />
+                <MenuItem Header="Open Mockup" Command="{Binding OpenCommand}"/>
+                <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
             </MenuItem>
         </Menu>
-        <Frame Source="/View/DirectionsView.xaml" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-               Grid.Row="2" Name="frameMain" NavigationUIVisibility="Hidden" />
-    </Grid>
-    <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF085593" Offset="0.641" />
-            <GradientStop Color="#FF2A84BE" Offset="1" />
-            <GradientStop Color="#FF74BCE8" Offset="0" />
-        </LinearGradientBrush>
-    </Window.Background>
+        <TabControl>
+            <TabItem Header="Raw" >
+                <view:MappingView />
+            </TabItem>
+            <TabItem Header="Xaml" />
+        </TabControl>
+    </StackPanel>
 </Window>

@@ -9,7 +9,7 @@ namespace MockupToXaml.View
     /// <summary>
     ///     Interaction logic for MappingView.xaml
     /// </summary>
-    public partial class MappingView : Page
+    public partial class MappingView : UserControl
     {
         private readonly MappingViewModel viewModel = new MappingViewModel();
 
