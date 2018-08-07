@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using MockupToXaml.Local;
@@ -17,6 +18,7 @@ namespace MockupToXaml.ViewModel
         private string _requiredNamespaces;
         private string _windowTemplate;
         private string _windowXaml;
+        private UserControl _mockUpVisualised;
 
         public MappingViewModel(string filename)
         {
@@ -92,12 +94,16 @@ namespace MockupToXaml.ViewModel
             {
                 _windowXaml = value;
 
-                //Todo: This is how we spin up a window from raw XAML.
-                var window = (Window) XamlReader.Parse(_windowXaml);
-                window.Show();
+                MockUpVisualised = (UserControl) XamlReader.Parse(_windowXaml);
 
                 OnPropertyChanged();
             }
+        }
+
+        public UserControl MockUpVisualised
+        {
+            get { return _mockUpVisualised; }
+            set { _mockUpVisualised = value; OnPropertyChanged();}
         }
 
         public ICommand GenerateCommand => new RelayCommand(GenerateCode, CanGenerateCode);

@@ -19,7 +19,9 @@
             <TabItem Header="Raw" >
                 <view:MappingView DataContext="{Binding MappingViewModel}"/>
             </TabItem>
-            <TabItem Header="Xaml" />
+            <TabItem Header="Xaml" >
+                <ContentControl Content="{Binding MappingViewModel.MockUpVisualised}"></ContentControl>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
