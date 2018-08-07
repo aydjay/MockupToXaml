@@ -7,8 +7,33 @@ namespace MockupToXaml.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private string _fileName;
+        private MappingViewModel _mappingViewModel;
         public ICommand OpenCommand => new RelayCommand(Execute);
         public ICommand ExitCommand => new RelayCommand(x => Application.Current.Shutdown());
+
+        public string FileName
+        {
+            get { return _fileName; }
+            set
+            {
+                _fileName = value;
+
+                OnPropertyChanged();
+
+                MappingViewModel = new MappingViewModel(FileName);
+            }
+        }
+
+        public MappingViewModel MappingViewModel
+        {
+            get { return _mappingViewModel; }
+            set
+            {
+                _mappingViewModel = value;
+                OnPropertyChanged();
+            }
+        }
 
         private void Execute(object obj)
         {
@@ -16,8 +41,7 @@ namespace MockupToXaml.ViewModel
             var result = ofd.ShowDialog();
             if (result.HasValue && result.Value)
             {
-                //var view = new MappingView(ofd.FileName);
-                //frameMain.Navigate(view);
+                FileName = ofd.FileName;
             }
         }
     }

@@ -1,9 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+﻿using System.Linq;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Markup;
 using MockupToXaml.Local;
 using MockupToXaml.Model;
+using MockupToXaml.View.ViewModel;
 
 namespace MockupToXaml.ViewModel
 {
@@ -17,13 +18,11 @@ namespace MockupToXaml.ViewModel
         private string _windowTemplate;
         private string _windowXaml;
 
-        public MappingViewModel()
+        public MappingViewModel(string filename)
         {
-            var uri = new Uri(Assembly.GetEntryAssembly().CodeBase);
-            var exeBasePath = uri.AbsolutePath.Replace("/", "\\");
-            exeBasePath = Path.GetDirectoryName(exeBasePath);
+            Filename = filename;
 
-            WindowTemplate = File.ReadAllText(string.Format("{0}\\Templates\\Window.txt", exeBasePath));
+            WindowTemplate = Resources.Window;
         }
 
         public string Filename
@@ -92,9 +91,16 @@ namespace MockupToXaml.ViewModel
             set
             {
                 _windowXaml = value;
+
+                //Todo: This is how we spin up a window from raw XAML.
+                var window = (Window) XamlReader.Parse(_windowXaml);
+                window.Show();
+
                 OnPropertyChanged();
             }
         }
+
+        public ICommand GenerateCommand => new RelayCommand(GenerateCode, CanGenerateCode);
 
         public void LoadMockup()
         {
@@ -126,10 +132,15 @@ namespace MockupToXaml.ViewModel
             }
         }
 
+        private bool CanGenerateCode(object obj)
+        {
+            return string.IsNullOrEmpty(Filename) == false;
+        }
 
-        public void GenerateCode()
+        public void GenerateCode(object obj)
         {
             var gen = new XamlGenerator();
+            LoadMockup();
             gen.MockupHolder = MockupHolder;
             gen.Generate();
             RequiredNamespaces = gen.NamespaceHeader;

@@ -8,8 +8,8 @@
         xmlns:viewModel="clr-namespace:MockupToXaml.ViewModel"
         mc:Ignorable="d"
         Title="MockupHolder to XAML" Height="590" Width="650" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
-    <StackPanel>
-        <Menu>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Open Mockup" Command="{Binding OpenCommand}"/>
                 <MenuItem Header="Exit" Command="{Binding ExitCommand}" />
@@ -17,9 +17,9 @@
         </Menu>
         <TabControl>
             <TabItem Header="Raw" >
-                <view:MappingView />
+                <view:MappingView DataContext="{Binding MappingViewModel}"/>
             </TabItem>
             <TabItem Header="Xaml" />
         </TabControl>
-    </StackPanel>
+    </DockPanel>
 </Window>

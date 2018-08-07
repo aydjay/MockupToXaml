@@ -16,15 +16,5 @@ namespace MockupToXaml
 
             DataContext = new MainWindowViewModel();
         }
-
-        private void miOpenMockup_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void miExit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
     }
 }

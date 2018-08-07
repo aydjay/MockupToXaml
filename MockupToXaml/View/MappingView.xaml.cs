@@ -1,8 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Markup;
-using Microsoft.Win32;
-using MockupToXaml.ViewModel;
+﻿using System.Windows.Controls;
 
 namespace MockupToXaml.View
 {
@@ -11,42 +7,9 @@ namespace MockupToXaml.View
     /// </summary>
     public partial class MappingView : UserControl
     {
-        private readonly MappingViewModel viewModel = new MappingViewModel();
-
         public MappingView()
         {
-            DataContext = viewModel;
             InitializeComponent();
-        }
-
-        public MappingView(string filename)
-        {
-            DataContext = viewModel;
-            InitializeComponent();
-            viewModel.Filename = filename;
-
-
-            viewModel.LoadMockup();
-        }
-
-        private void btnBrowse_Click(object sender, RoutedEventArgs e)
-        {
-            var ofd = new OpenFileDialog();
-            ofd.Filter = "All Files (*.*)|*.*";
-            ofd.ShowDialog();
-
-            viewModel.Filename = ofd.FileName;
-
-
-            viewModel.LoadMockup();
-        }
-
-        private void btnGenerate_Click(object sender, RoutedEventArgs e)
-        {
-            viewModel.GenerateCode();
-
-            var window = (Window) XamlReader.Parse(viewModel.WindowXaml);
-            window.Show();
         }
     }
 }
