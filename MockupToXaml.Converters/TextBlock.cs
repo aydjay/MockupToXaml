@@ -17,7 +17,7 @@ namespace MockupToXaml.Converters
             {
                 // Add attributes for the mockup control properties
                 var tag = XElement.Parse(code);
-                Utility.ProcessProperty(tag, "TextBlock", "Text", "text", control);
+                Utility.ProcessProperty(tag, "Text", "text", control);
 
                 return tag.ToString();
             }

@@ -109,6 +109,9 @@
     </EmbeddedResource>
     <Resource Include="Gfx\GenerateButton.png" />
     <Resource Include="Gfx\GenerateButton.ico" />
+    <Content Include="Templates\CheckBox.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Templates\Label.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

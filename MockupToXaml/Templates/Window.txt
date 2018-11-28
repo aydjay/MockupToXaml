@@ -1,7 +1,7 @@
 ﻿<UserControl 
         {Namespaces}
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="{Height}" Width="{Width}">
+        Height="{Height}" Width="{Width}" HorizontalAlignment="Left" VerticalAlignment="Top">
 		<UserControl.Resources>
 		{Resources}
 		</UserControl.Resources>

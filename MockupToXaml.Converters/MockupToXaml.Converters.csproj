@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckBox.cs" />
     <Compile Include="ComboBox.cs" />
     <Compile Include="DataGrid.cs" />
     <Compile Include="ListBox.cs" />
