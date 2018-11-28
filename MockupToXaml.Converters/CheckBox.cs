@@ -17,7 +17,7 @@ namespace MockupToXaml.Converters
             {
                 // Add attributes for the mockup control properties
                 var tag = XElement.Parse(code);
-                Utility.ProcessProperty(tag, "CheckBox", "Content", "text", control);
+                Utility.ProcessProperty(tag, "Content", "text", control);
                 //Todo Handle state
                 if (control.ControlProperties.ContainsKey("state"))
                 {

@@ -4,7 +4,7 @@ namespace MockupToXaml.Model
 {
     public class Utility
     {
-        public static void ProcessProperty(XElement tag, string xamlControlName, string xamlAttributeName, string mockupPropertyName, MockupControl mockupControl)
+        public static void ProcessProperty(XElement tag, string xamlAttributeName, string mockupPropertyName, MockupControl mockupControl)
         {
             if (!string.IsNullOrEmpty(mockupControl.ControlProperties[mockupPropertyName]))
             {
