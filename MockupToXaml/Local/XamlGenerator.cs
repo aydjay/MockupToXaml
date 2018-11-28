@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Xml.Linq;
 using MockupToXaml.Model;
 
 namespace MockupToXaml.Local
@@ -31,7 +32,21 @@ namespace MockupToXaml.Local
 
             code.AppendLine("</Grid>");
 
-            GeneratedCode = code.ToString();
+            GeneratedCode = FormatXml(code.ToString());
+        }
+        
+        string FormatXml(string xml)
+        {
+            try
+            {
+                XDocument doc = XDocument.Parse(xml);
+                return doc.ToString();
+            }
+            catch (Exception)
+            {
+                // Handle and throw if fatal exception here; don't just ignore them
+                return xml;
+            }
         }
 
         private string getXaml(MockupControl control)
