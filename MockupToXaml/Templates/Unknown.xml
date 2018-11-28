@@ -4,5 +4,5 @@
   <MockupControlType></MockupControlType>
   <Namespace><![CDATA[xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"]]></Namespace>
   <ConverterClassName>MockupToXaml.Converters.Unknown</ConverterClassName>
-  <Template><![CDATA[<Rectangle Width="{Width}" Height="{Height}" Margin="{X},{Y},0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />]]></Template>
+  <Template><![CDATA[<Border MinWidth="{Width}" MinHeight="{Height}" Margin="{X},{Y},0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="DarkGray"><TextBlock>Unsupported Control</TextBlock></Border>]]></Template>
 </MockupTemplate>
