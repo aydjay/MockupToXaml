@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <MockupTemplate>
-  <MockupControlType>com.balsamiq.mockups::List</MockupControlType>
   <Namespace><![CDATA[xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"]]></Namespace>
   <ConverterClassName>MockupToXaml.Converters.ListBox</ConverterClassName>
   <Template><![CDATA[<ListBox Width="{Width}" Height="{Height}" Margin="{X},{Y},0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />]]></Template>
